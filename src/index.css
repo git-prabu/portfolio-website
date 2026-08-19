@@ -1,5 +1,93 @@
 @import "tailwindcss";
 
+/*
+  Design tokens — translating Prabu's print portfolio identity to the web.
+  Light editorial (cream) base + a dark teal accent world (from the PDF cover
+  and the HaloHelm / Halcyon / Ripple glow). Grotesque display + mono labels.
+*/
+@theme {
+  /* Brand palette */
+  --color-cream: #edeae1;
+  --color-cream-2: #e5e1d6;
+  --color-ink: #1b1a18;
+  --color-muted: #6e6a62;
+  --color-line: #d4cfc3;
+  --color-dark: #0f1b1c;
+  --color-dark-2: #16292a;
+  --color-dark-line: #2b4142;
+  --color-accent: #3a8f8b;
+  --color-accent-soft: #7fd6d1;
+
+  /* Type */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: light;
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lenis smooth-scroll requirements */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Reduce motion for users who ask for it */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Utility: label / eyebrow style used throughout (mirrors "Selected Works") */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Big display headings use a tight, negative tracking like the PDF */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-cream);
 }
