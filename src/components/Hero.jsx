@@ -87,6 +87,7 @@ export default function Hero() {
               label="Your portrait"
               variant="render"
               className="aspect-[4/5] w-full rounded-sm"
+              imgClassName="object-[50%_18%]"
             />
             <span className="eyebrow absolute -bottom-3 left-4 bg-bg px-2 text-muted">
               Chennai, India
