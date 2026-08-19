@@ -26,14 +26,17 @@ const skills = [
 
 export default function About() {
   return (
-    <section id="about" className="border-t border-line px-6 py-24 md:px-10 md:py-36">
+    <section
+      id="about"
+      className="border-t border-line px-6 py-24 md:px-10 md:py-36"
+    >
       <div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-[0.9fr_1.1fr]">
         <div>
           <Reveal>
             <p className="eyebrow text-muted">About</p>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="display mt-4 text-5xl text-ink md:text-7xl">
+            <h2 className="display mt-4 text-5xl text-fg md:text-7xl">
               Design thinking,
               <br />
               written in code.
@@ -44,17 +47,15 @@ export default function About() {
         <div>
           {paragraphs.map((p, i) => (
             <Reveal key={i} delay={0.08 * i}>
-              <p className="mb-6 text-lg leading-relaxed text-muted">{p}</p>
+              <p className="mb-6 text-lg leading-relaxed text-faint">{p}</p>
             </Reveal>
           ))}
 
           <div className="mt-8 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2">
             {skills.map((s, i) => (
-              <Reveal key={s.title} delay={0.05 * i} className="bg-cream">
+              <Reveal key={s.title} delay={0.05 * i} className="bg-bg">
                 <div className="h-full p-6">
-                  <h3 className="font-display text-lg font-semibold text-ink">
-                    {s.title}
-                  </h3>
+                  <h3 className="font-display text-2xl text-fg">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">
                     {s.body}
                   </p>

@@ -1,30 +1,27 @@
 @import "tailwindcss";
 
 /*
-  Design tokens — translating Prabu's print portfolio identity to the web.
-  Light editorial (cream) base + a dark teal accent world (from the PDF cover
-  and the HaloHelm / Halcyon / Ripple glow). Grotesque display + mono labels.
+  Design tokens — adopted from yaros.me:
+  black background, white headings, #666 gray body, soft-blue accent,
+  Instrument Serif display + Inter body.
 */
 @theme {
-  /* Brand palette */
-  --color-cream: #edeae1;
-  --color-cream-2: #e5e1d6;
-  --color-ink: #1b1a18;
-  --color-muted: #6e6a62;
-  --color-line: #d4cfc3;
-  --color-dark: #0f1b1c;
-  --color-dark-2: #16292a;
-  --color-dark-line: #2b4142;
-  --color-accent: #3a8f8b;
-  --color-accent-soft: #7fd6d1;
+  --color-bg: #000000;
+  --color-surface: #0c0c0c;
+  --color-surface-2: #141414;
+  --color-line: #232323;
+  --color-fg: #ffffff;
+  --color-muted: #666666;
+  --color-faint: #9a9a9a;
+  --color-accent: #9ecfff;
+  --color-accent-2: #addcff;
 
-  /* Type */
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-mono: "Space Mono", ui-monospace, monospace;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html {
@@ -51,14 +48,13 @@ html.lenis body {
 
 body {
   margin: 0;
-  background: var(--color-cream);
-  color: var(--color-ink);
-  font-family: var(--font-display);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
 }
 
-/* Reduce motion for users who ask for it */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -71,23 +67,102 @@ body {
   }
 }
 
-/* Utility: label / eyebrow style used throughout (mirrors "Selected Works") */
+/* Small uppercase label (yaros uses Inter for these) */
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-/* Big display headings use a tight, negative tracking like the PDF */
+/* Instrument Serif display — light weight, gentle tracking, large sizes */
 .display {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.005em;
 }
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-cream);
+  color: var(--color-bg);
+}
+
+/* Form inputs (contact section) */
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  padding: 0.85rem 1rem;
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.input::placeholder {
+  color: var(--color-muted);
+}
+.input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(158, 207, 255, 0.15);
+}
+
+/* ---- Custom cursor (yaros style) ---- */
+/* Hide the native cursor only when the custom one is active. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 9999px;
+  mix-blend-mode: difference;
+  transform: translate(-100px, -100px);
+  will-change: transform;
+}
+
+/* JS sets transform to the pointer position; margins center each element on it. */
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  background: #ffffff;
+  transition: opacity 0.3s ease;
+}
+
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid #ffffff;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    margin 0.25s ease,
+    background-color 0.25s ease,
+    opacity 0.3s ease;
+}
+
+.cursor-ring--hover {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cursor-ring--down {
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
 }

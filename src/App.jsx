@@ -1,4 +1,5 @@
 import SmoothScroll from "./components/SmoothScroll";
+import CustomCursor from "./components/CustomCursor";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Works from "./components/Works";
@@ -11,6 +12,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <SmoothScroll>
+      <CustomCursor />
       <Nav />
       <main>
         <Hero />

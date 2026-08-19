@@ -21,14 +21,14 @@ export default function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-cream/80 backdrop-blur-md border-b border-line"
+          ? "border-b border-line bg-bg/80 backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
         <a
           href="#top"
-          className="font-display text-lg font-bold tracking-tight text-ink"
+          className="font-display text-2xl text-fg"
         >
           Prabu<span className="text-accent">.</span>
         </a>
@@ -37,7 +37,7 @@ export default function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="eyebrow text-muted transition-colors hover:text-ink"
+                className="eyebrow text-muted transition-colors hover:text-fg"
               >
                 {l.label}
               </a>
@@ -46,7 +46,7 @@ export default function Nav() {
         </ul>
         <a
           href="#contact"
-          className="eyebrow rounded-full border border-ink px-4 py-2 text-ink transition-colors hover:bg-ink hover:text-cream"
+          className="eyebrow rounded-full border border-line px-4 py-2 text-fg transition-colors hover:bg-fg hover:text-bg"
         >
           Get in touch
         </a>

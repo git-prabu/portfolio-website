@@ -13,7 +13,7 @@ export default function Works() {
               <p className="eyebrow text-muted">Selected Works</p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="display mt-4 text-6xl text-ink md:text-8xl">
+              <h2 className="display mt-4 text-6xl text-fg md:text-8xl">
                 Architecture
               </h2>
             </Reveal>
@@ -37,47 +37,29 @@ export default function Works() {
 }
 
 function ProjectSection({ project, flip }) {
-  const {
-    index,
-    title,
-    kind,
-    year,
-    tools,
-    hero,
-    wire,
-    summary,
-    body,
-    id,
-  } = project;
+  const { index, title, kind, year, tools, hero, wire, summary, body, id } =
+    project;
 
   return (
     <article id={id} className="scroll-mt-24">
-      <div
-        className={`grid gap-8 md:grid-cols-12 md:items-center ${
-          flip ? "" : ""
-        }`}
-      >
+      <div className="grid gap-8 md:grid-cols-12 md:items-center">
         {/* Text column */}
         <div
-          className={`md:col-span-5 ${
-            flip ? "md:order-2 md:pl-6" : "md:pr-6"
-          }`}
+          className={`md:col-span-5 ${flip ? "md:order-2 md:pl-6" : "md:pr-6"}`}
         >
           <Reveal>
             <div className="flex items-center gap-4">
-              <span className="font-mono text-sm text-accent">{index}</span>
+              <span className="font-display text-2xl text-accent">{index}</span>
               <span className="eyebrow text-muted">{kind}</span>
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h3 className="display mt-3 text-5xl text-ink md:text-6xl">
+            <h3 className="display mt-3 text-5xl text-fg md:text-7xl">
               {title}
             </h3>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-5 text-lg leading-relaxed text-ink/80">
-              {summary}
-            </p>
+            <p className="mt-5 text-lg leading-relaxed text-faint">{summary}</p>
           </Reveal>
           {body.map((para, i) => (
             <Reveal key={i} delay={0.12 + i * 0.05}>
@@ -86,12 +68,12 @@ function ProjectSection({ project, flip }) {
           ))}
           <Reveal delay={0.2}>
             <div className="mt-6 flex flex-wrap items-center gap-2">
-              <span className="font-mono text-xs text-muted">{year}</span>
+              <span className="text-xs text-muted">{year}</span>
               <span className="text-line">·</span>
               {tools.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-line px-2.5 py-1 font-mono text-[0.68rem] text-muted"
+                  className="rounded-full border border-line px-2.5 py-1 text-[0.68rem] text-muted"
                 >
                   {t}
                 </span>
@@ -109,7 +91,7 @@ function ProjectSection({ project, flip }) {
                 alt={`${title} — render`}
                 label={title}
                 variant="render"
-                className="aspect-[16/10] w-full rounded-sm shadow-[0_30px_60px_-30px_rgba(0,0,0,0.35)]"
+                className="aspect-[16/10] w-full rounded-sm"
                 imgClassName="transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
               />
               <div className="absolute -bottom-8 left-4 hidden w-40 sm:block md:-left-8 md:w-48">
@@ -118,10 +100,10 @@ function ProjectSection({ project, flip }) {
                   alt={`${title} — wireframe`}
                   label={title}
                   variant="wire"
-                  className="aspect-square w-full rounded-sm shadow-lg"
+                  className="aspect-square w-full rounded-sm"
                 />
               </div>
-              <span className="eyebrow absolute right-4 top-4 bg-cream/85 px-2 py-1 text-muted backdrop-blur-sm">
+              <span className="eyebrow absolute right-4 top-4 bg-bg/70 px-2 py-1 text-muted backdrop-blur-sm">
                 {title} · Selected Works
               </span>
             </div>

@@ -45,7 +45,7 @@ export default function Experience() {
             <p className="eyebrow text-muted">Experience &amp; Education</p>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="display mt-4 text-5xl text-ink md:text-6xl">
+            <h2 className="display mt-4 text-5xl text-fg md:text-7xl">
               The path so far
             </h2>
           </Reveal>
@@ -54,9 +54,9 @@ export default function Experience() {
             {timeline.map((t, i) => (
               <Reveal key={t.title} delay={0.05 * i}>
                 <div className="relative pb-10 pl-8">
-                  <span className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent" />
-                  <span className="font-mono text-sm text-muted">{t.year}</span>
-                  <h3 className="mt-1 font-display text-xl font-semibold text-ink">
+                  <span className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-accent" />
+                  <span className="text-sm text-muted">{t.year}</span>
+                  <h3 className="mt-1 font-display text-2xl text-fg">
                     {t.title}
                   </h3>
                   <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">
@@ -78,14 +78,12 @@ export default function Experience() {
               <Reveal key={name} delay={0.03 * i}>
                 <div>
                   <div className="flex items-baseline justify-between">
-                    <span className="font-display text-sm font-medium text-ink">
-                      {name}
-                    </span>
-                    <span className="font-mono text-xs text-muted">{pct}</span>
+                    <span className="text-sm font-medium text-fg">{name}</span>
+                    <span className="text-xs text-muted">{pct}</span>
                   </div>
-                  <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-cream-2">
+                  <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
                     <div
-                      className="h-full rounded-full bg-ink/70"
+                      className="h-full rounded-full bg-accent"
                       style={{ width: `${pct}%` }}
                     />
                   </div>

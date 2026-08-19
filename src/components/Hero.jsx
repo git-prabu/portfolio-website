@@ -27,7 +27,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.h1
-              className="display text-[18vw] leading-[0.85] text-ink md:text-[10.5rem]"
+              className="display text-[20vw] leading-[0.9] text-fg md:text-[12rem]"
               {...rise}
               transition={{
                 duration: 0.9,
@@ -39,7 +39,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl"
+              className="mt-6 max-w-xl text-lg leading-relaxed text-faint md:text-xl"
               {...rise}
               transition={{
                 duration: 0.9,
@@ -88,7 +88,7 @@ export default function Hero() {
               variant="render"
               className="aspect-[4/5] w-full rounded-sm"
             />
-            <span className="eyebrow absolute -bottom-3 left-4 bg-cream px-2 text-muted">
+            <span className="eyebrow absolute -bottom-3 left-4 bg-bg px-2 text-muted">
               Chennai, India
             </span>
           </motion.div>

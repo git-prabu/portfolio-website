@@ -6,7 +6,7 @@ import { useState } from "react";
   and have Prabu's real renders "light up" the instant he drops files into
   /public/works/ (matching the filenames in src/data/projects.js).
 
-  variant: "render" (cream/teal gradient) | "wire" (line-drawing feel) | "dark"
+  variant: "render" | "wire" | "dark"  (all tuned for the black theme)
 */
 export default function AssetImage({
   src,
@@ -21,9 +21,9 @@ export default function AssetImage({
 
   const palettes = {
     render:
-      "bg-[linear-gradient(135deg,#e5e1d6_0%,#d4cfc3_45%,#b9c7c4_100%)] text-ink/45",
-    wire: "bg-cream-2 text-ink/30 border border-line",
-    dark: "bg-[linear-gradient(135deg,#16292a_0%,#0f1b1c_60%,#0b1516_100%)] text-accent-soft/70",
+      "bg-[linear-gradient(135deg,#181818_0%,#0c0c0c_55%,#0b1a22_100%)] text-faint",
+    wire: "bg-surface text-muted border border-line",
+    dark: "bg-[linear-gradient(135deg,#0b1a22_0%,#0c0c0c_60%,#000000_100%)] text-accent/70",
   };
 
   return (
@@ -36,7 +36,7 @@ export default function AssetImage({
             <WireGlyph className="mb-1 h-16 w-16 opacity-60" />
           )}
           <span className="eyebrow px-4 text-center">{label || alt}</span>
-          <span className="font-mono text-[0.6rem] tracking-widest opacity-70">
+          <span className="text-[0.6rem] tracking-widest opacity-70">
             {variant === "wire" ? "wireframe" : "render"} placeholder
           </span>
         </div>
