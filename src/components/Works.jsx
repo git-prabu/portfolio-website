@@ -105,7 +105,7 @@ function ProjectSection({ project, flip }) {
                   />
                 </div>
               )}
-              <span className="eyebrow absolute right-4 top-4 bg-bg/70 px-2 py-1 text-muted backdrop-blur-sm">
+              <span className="eyebrow absolute right-4 top-4 text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.75)]">
                 {title} · Selected Works
               </span>
             </div>
