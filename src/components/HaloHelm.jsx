@@ -1,5 +1,4 @@
 import Reveal from "./Reveal";
-import AssetImage from "./AssetImage";
 
 const features = [
   { k: "AR visualization", v: "Dishes render as life-size 3D models on the table via the phone camera — no app to download." },
@@ -35,14 +34,13 @@ export default function HaloHelm() {
           </Reveal>
         </div>
 
-        {/* Hero preview */}
+        {/* Hero preview — shown at natural aspect so the full landing page is visible */}
         <Reveal y={40} amount={0.15} className="mt-14">
-          <AssetImage
+          <img
             src="/works/halohelm.jpg"
-            alt="HaloHelm — AR restaurant menu"
-            label="HaloHelm product"
-            variant="dark"
-            className="aspect-[16/9] w-full rounded-md border border-line"
+            alt="HaloHelm — the AR menu that sells more food"
+            loading="lazy"
+            className="w-full rounded-md border border-line"
           />
         </Reveal>
 
