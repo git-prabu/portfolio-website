@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Reveal from "./Reveal";
+import BookingModal from "./BookingModal";
+import { sendToPrabu, mailtoFallback } from "../lib/sendMessage";
 
 const roles = ["Studio / Firm", "Recruiter", "Potential client", "Collaborator", "Other"];
 const timelines = ["Just exploring", "ASAP", "1–4 weeks", "1–3 months"];
-
-const EMAIL = "arprabu02@gmail.com";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -15,24 +15,38 @@ export default function Contact() {
     message: "",
     subject: "",
   });
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [booking, setBooking] = useState(false);
 
   const set = (k) => (v) => setForm((f) => ({ ...f, [k]: v }));
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // Static site → compose an email to Prabu with the form contents.
-    const body = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Who: ${form.role || "—"}`,
-      `Timeline: ${form.timeline || "—"}`,
-      "",
-      form.message,
-    ].join("\n");
+    setStatus("sending");
     const subject = form.subject || `Portfolio enquiry — ${form.name || "hello"}`;
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    try {
+      await sendToPrabu(
+        {
+          name: form.name,
+          email: form.email,
+          who: form.role || "—",
+          timeline: form.timeline || "—",
+          message: form.message,
+        },
+        { subject }
+      );
+      setStatus("sent");
+    } catch {
+      mailtoFallback(subject, [
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        `Who: ${form.role || "—"}`,
+        `Timeline: ${form.timeline || "—"}`,
+        "",
+        form.message,
+      ]);
+      setStatus("sent");
+    }
   };
 
   return (
@@ -56,105 +70,134 @@ export default function Contact() {
 
         {/* Form */}
         <Reveal delay={0.12} className="mt-12">
-          <form
-            onSubmit={onSubmit}
-            className="rounded-2xl border border-line bg-surface/60 p-6 md:p-10"
-          >
-            <div className="grid gap-6 sm:grid-cols-2">
-              <Field label="Name" required>
-                <input
-                  required
-                  type="text"
-                  placeholder="Your name"
-                  value={form.name}
-                  onChange={(e) => set("name")(e.target.value)}
-                  className="input"
-                />
-              </Field>
-              <Field label="Email" required>
-                <input
-                  required
-                  type="email"
-                  placeholder="you@email.com"
-                  value={form.email}
-                  onChange={(e) => set("email")(e.target.value)}
-                  className="input"
-                />
-              </Field>
+          {status === "sent" ? (
+            <div className="flex flex-col items-center gap-4 rounded-2xl border border-line bg-surface/60 px-6 py-16 text-center">
+              <div className="display text-5xl text-fg">
+                Message <span className="italic">sent</span>.
+              </div>
+              <p className="max-w-md text-faint">
+                Thanks, {form.name || "there"} — it&apos;s on its way to Prabu.
+                Expect a reply within a day.
+              </p>
+              <button
+                onClick={() => {
+                  setStatus("idle");
+                  setForm({ name: "", email: "", role: "", timeline: "", message: "", subject: "" });
+                }}
+                className="mt-2 rounded-full border border-line px-6 py-3 text-sm font-semibold text-fg transition-colors hover:bg-fg hover:text-bg"
+              >
+                Send another
+              </button>
             </div>
-
-            <div className="mt-8">
-              <Legend>Who are you?</Legend>
-              <Pills
-                options={roles}
-                value={form.role}
-                onChange={set("role")}
-              />
-            </div>
-
-            <div className="mt-8">
-              <Legend>Timeline</Legend>
-              <Pills
-                options={timelines}
-                value={form.timeline}
-                onChange={set("timeline")}
-              />
-            </div>
-
-            <div className="mt-8">
-              <Field label="Tell me about it" required>
-                <textarea
-                  required
-                  rows={5}
-                  placeholder="What are you thinking about — a project, a role, a collaboration?"
-                  value={form.message}
-                  onChange={(e) => set("message")(e.target.value)}
-                  className="input resize-none"
-                />
-              </Field>
-            </div>
-
-            <div className="mt-6">
-              <Field label="Subject (optional)">
-                <input
-                  type="text"
-                  placeholder="Add a subject line"
-                  value={form.subject}
-                  onChange={(e) => set("subject")(e.target.value)}
-                  className="input"
-                />
-              </Field>
-            </div>
-
-            <button
-              type="submit"
-              className="mt-8 w-full rounded-full bg-fg py-4 text-sm font-semibold text-bg transition-transform hover:scale-[1.01]"
+          ) : (
+            <form
+              onSubmit={onSubmit}
+              className="rounded-2xl border border-line bg-surface/60 p-6 md:p-10"
             >
-              Send message
-            </button>
-          </form>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <Field label="Name" required>
+                  <input
+                    required
+                    type="text"
+                    placeholder="Your name"
+                    value={form.name}
+                    onChange={(e) => set("name")(e.target.value)}
+                    className="input"
+                  />
+                </Field>
+                <Field label="Email" required>
+                  <input
+                    required
+                    type="email"
+                    placeholder="you@email.com"
+                    value={form.email}
+                    onChange={(e) => set("email")(e.target.value)}
+                    className="input"
+                  />
+                </Field>
+              </div>
+
+              <div className="mt-8">
+                <Legend>Who are you?</Legend>
+                <Pills options={roles} value={form.role} onChange={set("role")} />
+              </div>
+
+              <div className="mt-8">
+                <Legend>Timeline</Legend>
+                <Pills
+                  options={timelines}
+                  value={form.timeline}
+                  onChange={set("timeline")}
+                />
+              </div>
+
+              <div className="mt-8">
+                <Field label="Tell me about it" required>
+                  <textarea
+                    required
+                    rows={5}
+                    placeholder="What are you thinking about — a project, a role, a collaboration?"
+                    value={form.message}
+                    onChange={(e) => set("message")(e.target.value)}
+                    className="input resize-none"
+                  />
+                </Field>
+              </div>
+
+              <div className="mt-6">
+                <Field label="Subject (optional)">
+                  <input
+                    type="text"
+                    placeholder="Add a subject line"
+                    value={form.subject}
+                    onChange={(e) => set("subject")(e.target.value)}
+                    className="input"
+                  />
+                </Field>
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="mt-8 w-full rounded-full bg-fg py-4 text-sm font-semibold text-bg transition-transform hover:scale-[1.01] disabled:opacity-50"
+              >
+                {status === "sending" ? "Sending…" : "Send message"}
+              </button>
+            </form>
+          )}
         </Reveal>
 
-        {/* Skip the form */}
+        {/* Prefer to talk → Book a call */}
         <Reveal delay={0.05} className="mt-10">
-          <div className="flex flex-col items-center gap-4 rounded-2xl border border-line bg-surface/40 px-6 py-14 text-center">
-            <p className="eyebrow text-muted">Prefer to keep it simple?</p>
-            <h3 className="display text-4xl text-fg md:text-6xl">
-              Skip <span className="italic">the form</span>
+          <div className="relative flex flex-col items-center gap-4 overflow-hidden rounded-2xl border border-line px-6 py-16 text-center">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(60% 100% at 50% 100%, rgba(158,207,255,0.12), rgba(0,0,0,0) 70%)",
+              }}
+            />
+            <p className="eyebrow relative text-muted">Prefer to talk?</p>
+            <h3 className="display relative text-4xl text-fg md:text-6xl">
+              Lets <span className="italic">skip</span> the form
             </h3>
-            <p className="max-w-md text-faint">
-              No pressure — just reach out directly and we&apos;ll take it from
-              there.
+            <p className="relative max-w-md text-faint">
+              15 minutes, no pressure — just a real conversation about what
+              you&apos;re building.
             </p>
-            <a
-              href={`mailto:${EMAIL}?subject=${encodeURIComponent("Hello Prabu")}`}
-              className="mt-2 rounded-full border border-line px-7 py-3 text-sm font-semibold text-fg transition-colors hover:bg-fg hover:text-bg"
+            <button
+              onClick={() => setBooking(true)}
+              data-cursor="hover"
+              className="relative mt-2 rounded-full border border-line bg-surface px-8 py-3 text-sm font-semibold text-fg transition-colors hover:bg-fg hover:text-bg"
             >
-              Email me directly
-            </a>
+              Book a call
+            </button>
           </div>
         </Reveal>
       </div>
+
+      <BookingModal open={booking} onClose={() => setBooking(false)} />
     </section>
   );
 }
