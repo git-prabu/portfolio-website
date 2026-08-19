@@ -28,7 +28,7 @@ export const projects = [
     year: "2025",
     tools: ["Rhino", "Grasshopper", "D5 Render"],
     hero: "/works/catalyst-hub.jpg",
-    secondary: null,
+    secondary: "/works/catalyst-hub-2.jpg",
     summary:
       "A mixed-use business campus conceived as one architectural gesture — a cluster of towers rising from a single continuous, sculptural base.",
     body: [
