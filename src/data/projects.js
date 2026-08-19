@@ -1,6 +1,7 @@
 // Architecture "Selected Works". Copy is drawn from Prabu's print portfolio.
-// `hero` / `wire` point to /public/works/*. Missing files fall back to a
-// styled placeholder (see AssetImage), so real renders swap in with no code change.
+// `hero` = main render, `secondary` = supporting render (null if none).
+// Missing files fall back to a styled placeholder (see AssetImage), so any
+// not-yet-uploaded image swaps in with no code change.
 
 export const projects = [
   {
@@ -11,7 +12,7 @@ export const projects = [
     year: "2024",
     tools: ["Rhino", "SketchUp", "D5 Render"],
     hero: "/works/stone-villa.jpg",
-    wire: "/works/stone-villa-wire.jpg",
+    secondary: "/works/stone-villa-2.jpg",
     summary:
       "A waterfront villa designed to belong on Palm Jumeirah — private and solid from the street, open and generous toward the water.",
     body: [
@@ -27,7 +28,7 @@ export const projects = [
     year: "2025",
     tools: ["Rhino", "Grasshopper", "D5 Render"],
     hero: "/works/catalyst-hub.jpg",
-    wire: "/works/catalyst-hub-wire.jpg",
+    secondary: null,
     summary:
       "A mixed-use business campus conceived as one architectural gesture — a cluster of towers rising from a single continuous, sculptural base.",
     body: [
@@ -36,30 +37,14 @@ export const projects = [
     ],
   },
   {
-    id: "valley-house",
-    index: "03",
-    title: "Valley House",
-    kind: "Conceptual retreat",
-    year: "2025",
-    tools: ["Rhino", "Grasshopper", "D5 Render"],
-    hero: "/works/valley-house.jpg",
-    wire: "/works/valley-house-wire.jpg",
-    summary:
-      "A residential retreat in a mountainous landscape, built around a single idea: living in rhythm with light.",
-    body: [
-      "The whole plan is organised like an eye, with a circular bathing courtyard at the dead centre acting as the pupil — an open oculus that pulls daylight, sky, and weather straight down into the heart of the home. Inside, a soft, natural palette of warm timber, pale concrete, and stone keeps nothing competing with the light.",
-      "All the rooms wrap around that central courtyard in a ring, so every space stays tied to the light at the middle. The private quarters are separated by six rotating, 360-degree doors that double as moving walls — slide one and you divide or reconnect the rooms, letting shadow and light shift through the house as the day moves.",
-    ],
-  },
-  {
     id: "ripple-pavilion",
-    index: "04",
+    index: "03",
     title: "Ripple Pavilion",
     kind: "Public pavilion",
     year: "2025",
     tools: ["Rhino", "Grasshopper", "Blender"],
     hero: "/works/ripple-pavilion.jpg",
-    wire: "/works/ripple-pavilion-wire.jpg",
+    secondary: "/works/ripple-pavilion-2.jpg",
     summary:
       "A waterside pavilion off the main walking bridge — a calm place to pause near the water, where the reflection reveals the true form.",
     body: [
@@ -69,13 +54,13 @@ export const projects = [
   },
   {
     id: "halcyon",
-    index: "05",
+    index: "04",
     title: "Halcyon",
     kind: "Speculative · Marine",
     year: "2026",
     tools: ["Rhino", "Grasshopper", "Blender"],
     hero: "/works/halcyon.jpg",
-    wire: "/works/halcyon-wire.jpg",
+    secondary: "/works/halcyon-2.jpg",
     summary:
       "A floating, parametric ocean structure that filters microplastics without harming marine life.",
     body: [
@@ -85,13 +70,13 @@ export const projects = [
   },
   {
     id: "facade-design",
-    index: "06",
+    index: "05",
     title: "Facade Design",
     kind: "Parametric study",
     year: "2026",
     tools: ["Rhino", "Grasshopper"],
     hero: "/works/facade-design.jpg",
-    wire: "/works/facade-design-wire.jpg",
+    secondary: null,
     summary:
       "A parametric facade study exploring a porous screen of vertical fins that modulate light, privacy, and a storefront's relationship to the street.",
     body: [
@@ -101,13 +86,13 @@ export const projects = [
   },
   {
     id: "form-study",
-    index: "07",
+    index: "06",
     title: "Form Study",
     kind: "Computational exploration",
     year: "2026",
     tools: ["Rhino", "Grasshopper", "Dendro", "Crystallon"],
     hero: "/works/form-study.jpg",
-    wire: "/works/form-study-wire.jpg",
+    secondary: null,
     summary:
       "A form-exploration project investigating porous, membrane-like geometry as a continuous, self-supporting surface.",
     body: [

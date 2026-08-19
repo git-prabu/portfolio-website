@@ -20,7 +20,7 @@ export default function Works() {
           </div>
           <Reveal delay={0.1}>
             <p className="max-w-sm text-muted">
-              Seven projects in computational and parametric design — from
+              Selected projects in computational and parametric design — from
               waterfront villas to speculative marine structures.
             </p>
           </Reveal>
@@ -37,7 +37,7 @@ export default function Works() {
 }
 
 function ProjectSection({ project, flip }) {
-  const { index, title, kind, year, tools, hero, wire, summary, body, id } =
+  const { index, title, kind, year, tools, hero, secondary, summary, body, id } =
     project;
 
   return (
@@ -94,15 +94,17 @@ function ProjectSection({ project, flip }) {
                 className="aspect-[16/10] w-full rounded-sm"
                 imgClassName="transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
               />
-              <div className="absolute -bottom-8 left-4 hidden w-40 sm:block md:-left-8 md:w-48">
-                <AssetImage
-                  src={wire}
-                  alt={`${title} — wireframe`}
-                  label={title}
-                  variant="wire"
-                  className="aspect-square w-full rounded-sm"
-                />
-              </div>
+              {secondary && (
+                <div className="absolute -bottom-10 left-4 hidden w-48 sm:block md:-left-10 md:w-60">
+                  <AssetImage
+                    src={secondary}
+                    alt={`${title} — additional view`}
+                    label={title}
+                    variant="render"
+                    className="aspect-[4/3] w-full rounded-sm border border-line shadow-[0_20px_40px_-20px_rgba(0,0,0,0.8)]"
+                  />
+                </div>
+              )}
               <span className="eyebrow absolute right-4 top-4 bg-bg/70 px-2 py-1 text-muted backdrop-blur-sm">
                 {title} · Selected Works
               </span>
