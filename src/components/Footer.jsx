@@ -90,14 +90,48 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Big watermark */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none select-none text-center"
-      >
-        <span className="display block translate-y-[22%] text-[26vw] leading-none text-fg/[0.04]">
-          Prabu
+      {/* Big script watermark inside a smoky blue glow */}
+      <div className="relative mt-6">
+        {/* Smoky glow */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[120%]"
+          style={{
+            background:
+              "radial-gradient(60% 80% at 50% 100%, rgba(158,207,255,0.16) 0%, rgba(158,207,255,0.06) 35%, rgba(0,0,0,0) 70%)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-[-10%] left-1/2 h-64 w-[70%] -translate-x-1/2 rounded-full opacity-60 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(120,175,225,0.22), rgba(0,0,0,0) 70%)",
+          }}
+        />
+
+        {/* Signature-style watermark */}
+        <span
+          aria-hidden="true"
+          className="relative block select-none text-center leading-none"
+          style={{
+            fontFamily: "var(--font-script)",
+            fontSize: "26vw",
+            transform: "translateY(14%)",
+            background:
+              "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0) 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          prabu
         </span>
+
+        {/* Created by line */}
+        <p className="relative pb-6 text-center text-sm text-muted">
+          Created by <span className="font-display italic text-faint">Prabu</span>
+        </p>
       </div>
     </footer>
   );
