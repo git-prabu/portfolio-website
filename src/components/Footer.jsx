@@ -91,11 +91,11 @@ export default function Footer() {
       </div>
 
       {/* Big script watermark inside a smoky blue glow */}
-      <div className="relative mt-6">
+      <div className="relative mt-10 h-40 overflow-hidden sm:h-56 md:h-72">
         {/* Smoky glow */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[120%]"
+          className="pointer-events-none absolute inset-0"
           style={{
             background:
               "radial-gradient(60% 80% at 50% 100%, rgba(158,207,255,0.16) 0%, rgba(158,207,255,0.06) 35%, rgba(0,0,0,0) 70%)",
@@ -103,23 +103,22 @@ export default function Footer() {
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-[-10%] left-1/2 h-64 w-[70%] -translate-x-1/2 rounded-full opacity-60 blur-3xl"
+          className="pointer-events-none absolute bottom-[-20%] left-1/2 h-40 w-[70%] -translate-x-1/2 rounded-full opacity-60 blur-3xl sm:h-64"
           style={{
             background:
               "radial-gradient(circle, rgba(120,175,225,0.22), rgba(0,0,0,0) 70%)",
           }}
         />
 
-        {/* Signature-style watermark */}
+        {/* Signature-style watermark (behind, bleeds off the bottom edge) */}
         <span
           aria-hidden="true"
-          className="relative block select-none text-center leading-none"
+          className="pointer-events-none absolute inset-x-0 bottom-[-8%] select-none text-center leading-none"
           style={{
             fontFamily: "var(--font-script)",
-            fontSize: "26vw",
-            transform: "translateY(14%)",
+            fontSize: "clamp(5.5rem, 26vw, 18rem)",
             background:
-              "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0) 100%)",
+              "linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 55%, rgba(255,255,255,0) 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",
@@ -128,8 +127,8 @@ export default function Footer() {
           prabu
         </span>
 
-        {/* Created by line */}
-        <p className="relative pb-6 text-center text-sm text-muted">
+        {/* Created by line (on top, clear of the watermark) */}
+        <p className="absolute inset-x-0 bottom-3 z-10 text-center text-sm text-muted">
           Created by <span className="font-display italic text-faint">Prabu</span>
         </p>
       </div>

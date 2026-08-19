@@ -111,7 +111,7 @@ export default function BookingModal({ open, onClose }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-2xl border border-line bg-surface"
+            className="relative z-10 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-line bg-surface"
           >
             <button
               onClick={onClose}
