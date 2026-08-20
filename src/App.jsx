@@ -1,5 +1,6 @@
 import SmoothScroll from "./components/SmoothScroll";
 import CustomCursor from "./components/CustomCursor";
+import ImageGuard from "./components/ImageGuard";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Works from "./components/Works";
@@ -13,6 +14,7 @@ function App() {
   return (
     <SmoothScroll>
       <CustomCursor />
+      <ImageGuard />
       <Nav />
       <main>
         <Hero />

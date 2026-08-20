@@ -57,6 +57,14 @@ body {
   overflow-x: hidden;
 }
 
+/* Image save deterrents (casual only — not real protection) */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
