@@ -91,6 +91,7 @@ function ProjectSection({ project, flip }) {
                 alt={`${title} — render`}
                 label={title}
                 variant="render"
+                sizes="(min-width: 768px) 58vw, 100vw"
                 className="aspect-[16/10] w-full rounded-sm"
                 imgClassName="transition-transform duration-[1.2s] ease-out hover:scale-[1.03]"
               />
@@ -101,6 +102,7 @@ function ProjectSection({ project, flip }) {
                     alt={`${title} — additional view`}
                     label={title}
                     variant="render"
+                    sizes="240px"
                     className="aspect-[4/3] w-full rounded-sm border border-line shadow-[0_20px_40px_-20px_rgba(0,0,0,0.8)]"
                   />
                 </div>

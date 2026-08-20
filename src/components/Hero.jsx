@@ -86,6 +86,7 @@ export default function Hero() {
               alt="Prabu"
               label="Your portrait"
               variant="render"
+              sizes="(min-width: 768px) 384px, 85vw"
               className="aspect-[4/5] w-full rounded-sm"
               imgClassName="object-[50%_18%]"
             />

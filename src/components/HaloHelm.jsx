@@ -38,6 +38,8 @@ export default function HaloHelm() {
         <Reveal y={40} amount={0.15} className="mt-14">
           <img
             src="/works/halohelm.jpg"
+            srcSet="/works/halohelm-640.jpg 640w, /works/halohelm.jpg 1280w, /works/halohelm-1920.jpg 1920w"
+            sizes="(min-width: 768px) 1320px, 100vw"
             alt="HaloHelm — the AR menu that sells more food"
             loading="lazy"
             className="w-full rounded-md border border-line"

@@ -8,6 +8,15 @@ import { useState } from "react";
 
   variant: "render" | "wire" | "dark"  (all tuned for the black theme)
 */
+// Builds a responsive srcset from a base "/path/name.jpg", pointing at the
+// -640 / base(1280) / -1920 derivatives produced by scripts/optimize-works.mjs.
+function buildSrcSet(src) {
+  if (!src || !src.endsWith(".jpg")) return undefined;
+  const s640 = src.replace(/\.jpg$/, "-640.jpg");
+  const s1920 = src.replace(/\.jpg$/, "-1920.jpg");
+  return `${s640} 640w, ${src} 1280w, ${s1920} 1920w`;
+}
+
 export default function AssetImage({
   src,
   alt = "",
@@ -15,6 +24,7 @@ export default function AssetImage({
   variant = "render",
   className = "",
   imgClassName = "",
+  sizes = "100vw",
 }) {
   const [failed, setFailed] = useState(false);
   const showPlaceholder = !src || failed;
@@ -43,6 +53,8 @@ export default function AssetImage({
       ) : (
         <img
           src={src}
+          srcSet={buildSrcSet(src)}
+          sizes={sizes}
           alt={alt}
           loading="lazy"
           onError={() => setFailed(true)}
